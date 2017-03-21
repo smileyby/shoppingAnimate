@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>购物车动画</title>
+  <style>
+    .fixed {
+      position: fixed;
+      right: 10px;
+      bottom: 0;
+      padding: 12px 25px;
+      color: #fff;
+      text-align: center;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      background-color: #f50;
+    }
+
+    .mover {
+      position: absolute;
+      bottom: 70%;
+      right: 50%;
+      width: 200px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      background-color: #333;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+    }
+
+    .transition {
+      -webkit-transition: right 1s ease-out;
+      -moz-transition: right 1s ease-out;
+      -ms-transition: right 1s ease-out;
+      -o-transition: right 1s ease-out;
+      transition: right 1s ease-out;
+    }
+
+    .once-move {
+      -webkit-animation: movetocart 1s cubic-bezier(0.38,-0.58,0.79,0.19);
+      -o-animation: movetocart 1s cubic-bezier(0.38,-0.58,0.79,0.19);
+      animation: movetocart 1s cubic-bezier(0.38,-0.58,0.79,0.19);
+      right: 3%;
+    }
+
+    @-webkit-keyframes movetocart {
+      from {
+        bottom: 70%;
+        opacity: 1;
+        -webkit-transform: scale(1);
+      }
+      to {
+        bottom: 0%;
+        opacity: 0.2;
+        -webkit-transform: scale(0.2);
+      }
+    }
+  </style>
+</head>
+</head>
+<body>
+    <div class="mover">点我，点我</div>
+    <div class="fixed">购物车</div>
+</body>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+  $(function(){
+    $(".mover").on("click", function(){
+      $(this).addClass("transition once-move");
+    });
+
+    $(".mover")[0].addEventListener("webkitAnimationEnd", function(){
+      $(this).hide();
+    }, false);
+  });
+</script>
+</html>
